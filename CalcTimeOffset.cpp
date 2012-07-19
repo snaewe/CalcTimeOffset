@@ -17,12 +17,12 @@ using namespace boost::posix_time;
 
 struct TimeOffset
 {
-  TimeOffset(unsigned int theHour, unsigned int theMinute)
+  TimeOffset(int theHour, int theMinute)
     :hour(theHour)
     ,minute(theMinute)
   {}
 
-  unsigned int hour, minute;
+  int hour, minute;
 };
 
 ptime get_local_time(ptime utcTime)
