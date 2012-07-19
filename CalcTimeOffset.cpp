@@ -51,15 +51,25 @@ operator<<(std::ostream& ostr, TimeOffset const& offs)
   return ostr;
 }
 
+ptime normalizeToSeconds(ptime const& theTime)
+{
+  time_duration td = theTime.time_of_day();
+  return ptime(theTime.date(), td.hours()+td.minutes()+td.seconds());
+}
+
 int main()
 {
   TimeOffset offset(0, 20);
 
-  ptime basetime = second_clock::universal_time();
+  ptime basetime = microsec_clock::universal_time();
 
   ptime local_start_time = get_local_time(basetime);
 
   ptime in_two_hours = offset_time(basetime, TimeOffset(2, 0));
+
+  std::cout
+    << "NOW: " << to_simple_string(basetime)
+    << std::endl;
 
   std::cout
     << to_simple_string(basetime) << " + 2:00h = " << to_simple_string(in_two_hours) << " (UTC) == "
@@ -71,5 +81,11 @@ int main()
     << to_simple_string(basetime) << " = "
     << get_offset(basetime, in_two_hours)
     << std::endl;
+
+  time_duration td(13, 44, 22, 50);
+
+  std::cout << "td  :   " << td << std::endl;
+  std::cout << "td/1:   " << (td/2) << std::endl;
+
   return 0;
 }
