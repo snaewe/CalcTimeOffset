@@ -1,0 +1,5 @@
+*         text=auto
+*.sln     eol=crlf
+*.sln     whitespace -tab-in-indent
+*.vcproj  eol=crlf
+*.vcproj  whitespace -tab-in-indent
