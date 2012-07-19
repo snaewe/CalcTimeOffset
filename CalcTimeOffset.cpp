@@ -67,7 +67,9 @@ int main()
     << std::endl;
 
   std::cout
-    << to_simple_string(in_two_hours) << " - 2:00h = " << get_offset(basetime, in_two_hours)
+    << to_simple_string(in_two_hours) << " - "
+    << to_simple_string(basetime) << " = "
+    << get_offset(basetime, in_two_hours)
     << std::endl;
   return 0;
 }
